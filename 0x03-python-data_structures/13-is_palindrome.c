@@ -1,72 +1,51 @@
 #include "lists.h"
-
-/**
- * reverse_listint - reverses a linked list
- * @head: pointer to the first node in the list
+#include <stdlib.h>
+#include <stdio.h>
+/*
+ * is_palindrome - function with one argument
+ * @head: pointer to linked list
  *
- * Return: pointer to the first node in the new list
- */
-void reverse_listint(listint_t **head)
-{
-	listint_t *prev = NULL;
-	listint_t *current = *head;
-	listint_t *next = NULL;
-
-	while (current)
-	{
-		next = current->next;
-		current->next = prev;
-		prev = current;
-		current = next;
-	}
-
-	*head = prev;
-}
-
-/**
- * is_palindrome - checks if a linked list is a palindrome
- * @head: double pointer to the linked list
- *
- * Return: 1 if it is, 0 if not
+ * Description: check if value singly linked list is palindrome
+ * Return: 1 if true or 0 if false
  */
 int is_palindrome(listint_t **head)
 {
-	listint_t *slow = *head, *fast = *head, *temp = *head, *dup = NULL;
+	listint_t *ptr;
+	int count = 0, count2 = 0, half;
+	int *buf = NULL;
 
-	if (*head == NULL || (*head)->next == NULL)
+	if (!head)
+	      return (0);
+	if (!*head)
 		return (1);
-
-	while (1)
+	ptr = *head;
+	while (ptr && ptr->next)
 	{
-		fast = fast->next->next;
-		if (!fast)
-		{
-			dup = slow->next;
-			break;
-		}
-		if (!fast->next)
-		{
-			dup = slow->next->next;
-			break;
-		}
-		slow = slow->next;
+		ptr = ptr->next;
+		count++;
 	}
+	buf = malloc(sizeof(int) * count);
+	if (!buf)
+		return (0);
 
-	reverse_listint(&dup);
-
-	while (dup && temp)
+	ptr = *head;
+	count = 0;
+	while (ptr)
 	{
-		if (temp->n == dup->n)
-		{
-			dup = dup->next;
-			temp = temp->next;
-		}
-		else
+		buf[count] = ptr->n;
+		count++;
+		ptr = ptr->next;
+	}
+	half = count / 2;
+
+	while (half)
+	{
+		if (buf[count2] != buf[count - 1])
 			return (0);
+		half--;
+		count2++;
+		count--;
 	}
-
-	if (!dup)
-		return (1);
-
-	return (0);
+	free(buf);
+	return (1);
 }
