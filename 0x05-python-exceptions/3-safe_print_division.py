@@ -1,12 +1,10 @@
 #!/usr/bin/python3
-
-
 def safe_print_division(a, b):
-    quotient = None
+    '''Divides 2 integrs and prints the result'''
     try:
-        quotient = a / b
-        print("Inside result: {}".format(quotient))
-    except:
-        print("Inside result: {}".format(quotient))
+        div = a / b
+    except (TypeError, ZeroDivisionError):
+        div = None
     finally:
-        return quotient
+        print("Inside result: {}".format(div))
+    return (div)
