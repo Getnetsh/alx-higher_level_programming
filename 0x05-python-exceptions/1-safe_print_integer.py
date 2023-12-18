@@ -1,9 +1,18 @@
 #!/usr/bin/python3
+# -----------------------------------------------------------
+# Python program that:
+# demonstrates how to print an integer with "{:d}".format()
+# demonstrates how to use a try ... except for exception handling
+#
+# (C) 2023 Getnet Shiferaw 
+# email Getnetss2009@gmail.com
+# -----------------------------------------------------------
 
 
 def safe_print_integer(value):
     try:
         print("{:d}".format(value))
-        return True
-    except:
+    except (TypeError, ValueError):
         return False
+
+    return True
