@@ -1,20 +1,24 @@
 #!/usr/bin/python3
-'''Define a Square class.'''
+# 101-square.py
+# Getnet shiferaw <Getnetss2009@gmail.com>
+"""Define a class Square."""
 
 
 class Square:
-    '''Define a class Square'''
+    """Represent a square."""
+
     def __init__(self, size=0, position=(0, 0)):
-        '''Initialize a new square.
+        """Initialize a new square.
         Args:
-           size (int): The size of the new square.
-        '''
+            size (int): The size of the new square.
+            position (int, int): The position of the new square.
+        """
         self.size = size
         self.position = position
 
     @property
     def size(self):
-        '''Get/set the current size of the square.'''
+        """Get/set the current size of the square."""
         return (self.__size)
 
     @size.setter
@@ -27,7 +31,7 @@ class Square:
 
     @property
     def position(self):
-        '''Get/set the current position of the square.'''
+        """Get/set the current position of the square."""
         return (self.__position)
 
     @position.setter
@@ -40,28 +44,28 @@ class Square:
         self.__position = value
 
     def area(self):
-        '''Return the area of square.'''
+        """Return the current area of the square."""
         return (self.__size * self.__size)
 
     def my_print(self):
-        '''Print the square with the number character.'''
+        """Print the square with the # character."""
         if self.__size == 0:
             print("")
             return
-        [print("") for index in range(0, self.__position[1])]
 
-        for index in range(0, self.__size):
-            [print(" ", end="") for jndex in range(0, self.__position[0])]
-            [print("#", end="") for kndex in range(0, self.__size)]
+        [print("") for i in range(0, self.__position[1])]
+        for i in range(0, self.__size):
+            [print(" ", end="") for j in range(0, self.__position[0])]
+            [print("#", end="") for k in range(0, self.__size)]
             print("")
 
     def __str__(self):
-        '''Define the print() representation of a Square.'''
+        """Define the print() representation of a Square."""
         if self.__size != 0:
-            [print("") for index in range(0, self.__position[1])]
-        for index in range(0, self.__size):
-            [print(" ", end="") for jndex in range(0, self.__position[0])]
-            [print("#", end="") for kndex in range(0, self.__size)]
-            if index != self.__size - 1:
+            [print("") for i in range(0, self.__position[1])]
+        for i in range(0, self.__size):
+            [print(" ", end="") for j in range(0, self.__position[0])]
+            [print("#", end="") for k in range(0, self.__size)]
+            if i != self.__size - 1:
                 print("")
-        return("")
+        return ("")
